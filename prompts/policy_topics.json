@@ -1,0 +1,18 @@
+{
+"POL-ACC-01": "who can file access requests, who approves them, approval times, contractor access end",
+"POL-ACC-02": "who is eligible for Finance ERP, HRIS, Payroll, Production database, Cloud admin console and BI; contractors and interns; exceptions",
+"POL-PWD-01": "password and MFA resets, the self-service portal, being locked out",
+"POL-ONB-01": "who starts onboarding, the directory record it needs, timing, accounts created, laptop",
+"POL-OFF-01": "resignations and contract ends, when access is removed, returning equipment, final pay questions",
+"POL-OFF-02": "terminations for cause, layoffs, other involuntary exits, leaves of absence, data-theft risk",
+"POL-PTO-01": "PTO accrual, carry-over, interns and contractors, booking and notice",
+"POL-SICK-01": "sick days, doctor's notes, carry-over",
+"POL-PAR-01": "parental leave length, service requirement, notice",
+"POL-REM-01": "working from home, fully remote arrangements, working from another country",
+"POL-EQP-01": "laptops and their replacement cycle, lost or stolen devices, home-office stipend, personal devices",
+"POL-EXP-01": "expense deadlines, receipts, meal limits, expense approvals, alcohol",
+"POL-TRV-01": "booking travel, flight class, travel approval",
+"POL-PRIV-01": "which employee information can and cannot be shared",
+"POL-SEC-01": "personal accounts and shared passwords, personal email or cloud storage, phishing, compromised accounts, installing software",
+"POL-HOL-01": "company holidays, office closures, working on a holiday"
+}

@@ -37,7 +37,8 @@ class CaseTimeout(RuntimeError):
 
 def system_prompt() -> str:
     base = (ROOT / "prompts" / "system.md").read_text("utf-8").strip()
-    index = "\n".join(f"- {p['id']}: {p['title']}" for p in POLICIES.values())
+    topics = json.loads((ROOT / "prompts" / "policy_topics.json").read_text("utf-8"))
+    index = "\n".join(f"- {p['id']}: {p['title']} (covers: {topics[p['id']]})" for p in POLICIES.values())
     catalog = "\n".join(f"- {s['id']}: {s['name']} ({s['tier']})" for s in SYSTEMS.values())
     return f"{base}\n\nPolicies (read the text with get_policy):\n{index}\n\nSystems:\n{catalog}"
 
