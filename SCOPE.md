@@ -240,3 +240,8 @@ wording nobody tuned for.
 
 | Gate | Result | Numbers | Date |
 |---|---|---|---|
+| 0 | PASS | oracle 130/130 on every label alternative; null 5/130; 22 probes rejected; 7 traps accepted; Ian approved 20-case sample | 2026-11-18 |
+| 1 | (no bar) | router 85/90 = 94.4% [87.6, 97.6], 0 wrong actions, recall 11/11, false escalation 2/74 | 2026-11-18 |
+| 2 Haiku 5.5 ×3 | **FAIL** (beats-baseline +3.4; recall 87.9%) | 264/270 = 97.8% [95.2, 99.0], 0 wrong, invented 4/270 (1.5%), recall 29/33, false esc 0/222, p95 7.0 s, $0.0006/query | 2026-11-18 |
+| 2 Opus 5.5 | **FAIL** (beats-baseline +4.4) | 89/90 = 98.9% [94.0, 99.8], 0 wrong, invented 0, recall 11/11, false esc 0/74, p95 9.9 s, $0.030/query; the miss is an API safety refusal on adv-15 | 2026-11-18 |
+| 2 Sonnet 5.5 | not run (dropped by Ian, 2026-11-18) | | |

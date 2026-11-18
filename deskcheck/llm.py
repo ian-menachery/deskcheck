@@ -134,7 +134,8 @@ def run_case(cl, budget: Budget, run: str, model: str, effort: str, case: dict) 
             raise CaseTimeout(f"case exceeded {CASE_CEILING_S}s")
         resp, latency, retries, cost, usage = _call(cl, budget, run, case["id"], model, effort, system, messages)
         ep.calls.append({"model": resp.model, "usage": usage, "latency_s": round(latency, 3), "retries": retries,
-                         "cost_usd": cost, "stop_reason": resp.stop_reason})
+                         "cost_usd": cost, "stop_reason": resp.stop_reason,
+                         "stop_details": resp.stop_details.model_dump() if getattr(resp, "stop_details", None) else None})
         thinking = " ".join(b.thinking for b in resp.content if b.type == "thinking" and b.thinking).strip()
         for b in resp.content:
             if b.type == "text" and b.text.strip():
