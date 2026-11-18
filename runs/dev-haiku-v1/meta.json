@@ -1,0 +1,21 @@
+{
+ "agent": "llm",
+ "split": "dev",
+ "cases": null,
+ "reps": 1,
+ "cases_sha256": "c5724f8a578615e6ed2a3e0263497fbee2982e87e964ab811017d7dca4d566a5",
+ "git": "6fb213d",
+ "model": "claude-haiku-5-5",
+ "effort": "medium",
+ "prompt_sha256": "02d63fa65a6fcc54d57c457309d5e7bcee4998f655835fb502d3900e80cd70ce",
+ "prompt_config": {
+  "max_tokens": 8000,
+  "effort": "medium",
+  "thinking": {
+   "type": "adaptive",
+   "display": "summarized"
+  },
+  "max_calls": 8
+ },
+ "started": "2026-11-18 12:09:31"
+}
