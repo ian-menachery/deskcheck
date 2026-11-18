@@ -24,6 +24,7 @@ Add to `lib/site.ts`:
     kind: "Helpdesk agent with an eval harness",
     summary:
       "An IT/HR helpdesk agent that only acts through validated tools. On 60 blind, messier cases a rule router took 5 wrong actions; Claude took none in 600 runs.",
+    repo: "https://github.com/ian-menachery/deskcheck",
     demo: "/lab/deskcheck",
   },
 
@@ -31,7 +32,7 @@ Add to `lib/site.ts`:
   { href: "/lab/deskcheck", title: "Helpdesk agent replay", from: "deskcheck" },
 ```
 
-The repo is local only (no GitHub remote yet), so the entry has no `repo` and the case study says "Private repository". Add the link if Ian publishes it.
+The repo is public at https://github.com/ian-menachery/deskcheck (2026-11-18), so the entry has a `repo` and the case study's first line links the code.
 
 To regenerate the data from the deskcheck repo: `py scripts/export_site.py`, then copy `site-handoff/site/data/deskcheck/` again. `npm test` in `site-handoff/` runs the Vitest file standalone.
 
