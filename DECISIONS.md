@@ -67,3 +67,19 @@ even when only one reports to the requester.
 Dev at 40/40 says little about test. If the router scores high on test, the
 "beat the baseline by 15 points" bar becomes very hard for any model; that bar
 was set before the router existed and stays as written.
+
+## 8. Dev tuning on Haiku 5.5: three rounds, then frozen at v2 (2026-11-18)
+
+| Round | Prompt | Dev task success | Wrong actions | Change that followed |
+|---|---|---|---|---|
+| 0 | v0 | 38/40 | 0 | onb-12 used `clarify` for "HR must create the record first"; pol-10 never opened the equipment policy and answered "can't confirm". v1: each policy's topics in the index (taken from its text), reply kinds defined, escalate rather than reply "couldn't find a policy". |
+| 1 | v1 | 39/40 | 0 | amb-07 asked its question in plain text and ended without `reply`. v2: "the requester only sees what you send with reply". |
+| 2 | v2 | 40/40, then 39/40 on a second rep | 0 | none |
+
+Stopped at round 2 of the 6 allowed: dev is saturated (79/80 over two reps),
+so another change could not be told apart from noise. The one remaining miss
+(off-08 rep 1: offered to escalate instead of escalating) was left alone on
+purpose; v2 says "if a write is rejected, explain the reason", and pushing it
+toward escalation risks escalating cases whose right answer is a refusal.
+Dev spend for tuning: $0.124 including the pilot. The frozen prompt sha is in
+`prompts/FROZEN.sha256`; the runner refuses a test run with any other prompt.
