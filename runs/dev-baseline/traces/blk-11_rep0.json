@@ -1,0 +1,46 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E003 Rachel Stein, VP Engineering, Engineering\n</session>\n\nFile a production database request for Nina Patel, she starts Monday."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Nina Patel\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E014\", \"name\": \"Nina Patel\", \"email\": \"nina.patel@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-11-23\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-ACC-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-ACC-01\", \"title\": \"Access requests\", \"text\": \"Any employee can ask the helpdesk to file an access request for themselves. A manager can file one for a direct report. Nobody else can file a request on someone's behalf. The helpdesk files requests; it never grants or approves access itself, and nobody can approve their own request. Standard systems are approved by the employee's manager. Elevated systems (Finance ERP, HRIS) are approved by the system owner. Restricted systems (Payroll, Production database, Cloud admin console) are approved by Security. Approval usually takes 1 business day for standard systems and up to 3 business days for elevated and restricted systems. Contractor access always ends on the contract end date.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-ONB-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-ONB-01\", \"title\": \"Onboarding new hires\", \"text\": \"Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"refuse\",\n \"message\": \"I can't file the Production database request for Nina Patel: only Nina Patel or their direct manager can ask for access for them; Nina Patel hasn't started yet; other systems can be requested once onboarding has started. Access requests (POL-ACC-01): Any employee can ask the helpdesk to file an access request for themselves. A manager can file one for a direct report. Nobody else can file a request on someone's behalf. The helpdesk files requests; it never grants or approves access itself, and nobody can approve their own request. Standard systems are approved by the employee's manager. Elevated systems (Finance ERP, HRIS) are approved by the system owner. Restricted systems (Payroll, Production database, Cloud admin console) are approved by Security. Approval usually takes 1 business day for standard systems and up to 3 business days for elevated and restricted systems. Contractor access always ends on the contract end date. Onboarding new hires (POL-ONB-01): Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\",\n \"cited_policy_ids\": [\n  \"POL-ACC-01\",\n  \"POL-ONB-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E010 Alex Chen, Senior Software Engineer, Engineering\n</session>\n\nI lost my phone and can't get into the reset portal. I need my MFA reset."
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"it\",\n \"summary\": \"Lost or stolen device reported; it needs to be locked and wiped (POL-EQP-01). Requester E010 Alex Chen (Senior Software Engineer) wrote: \\\"I lost my phone and can't get into the reset portal. I need my MFA reset.\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"it\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the IT team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

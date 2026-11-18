@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E006 Laura Bianchi, HR Director, HR\n</session>\n\nStart onboarding for Lucia Ferreira and Nina Patel; they start this week and next."
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E029\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1001\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E014\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1002\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"ok\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

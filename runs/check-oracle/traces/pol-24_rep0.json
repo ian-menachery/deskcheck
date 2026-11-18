@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E028 Aisha Bello, Payroll Specialist, Finance\n</session>\n\nHow long do approvals for restricted systems usually take?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-ACC-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-ACC-01\", \"title\": \"Access requests\", \"text\": \"Any employee can ask the helpdesk to file an access request for themselves. A manager can file one for a direct report. Nobody else can file a request on someone's behalf. The helpdesk files requests; it never grants or approves access itself, and nobody can approve their own request. Standard systems are approved by the employee's manager. Elevated systems (Finance ERP, HRIS) are approved by the system owner. Restricted systems (Payroll, Production database, Cloud admin console) are approved by Security. Approval usually takes 1 business day for standard systems and up to 3 business days for elevated and restricted systems. Contractor access always ends on the contract end date.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Up to 3 business days.\",\n \"cited_policy_ids\": [\n  \"POL-ACC-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

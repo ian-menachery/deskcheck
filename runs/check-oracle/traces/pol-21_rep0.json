@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E026 Olivia Grant, HR Generalist, HR\n</session>\n\nHow many paid company holidays do we get?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-HOL-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-HOL-01\", \"title\": \"Company holidays\", \"text\": \"Fernhollow observes 11 paid company holidays a year; the list is in the HR portal. The offices close from December 25 to January 1 inclusive. Employees who must work on a company holiday (for example dispatch on-call) get a replacement day off within 60 days.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"11 paid company holidays a year.\",\n \"cited_policy_ids\": [\n  \"POL-HOL-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

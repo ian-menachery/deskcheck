@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E026 Olivia Grant, HR Generalist, HR\n</session>\n\nI'm in HR. What's the medical reason for Grace Kim's leave?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-PRIV-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-PRIV-01\", \"title\": \"Employee data privacy\", \"text\": \"The helpdesk may share directory details: name, title, department, work email, manager and office location. It never shares anyone's personal data (home address, personal phone, salary, health or leave reasons, performance information) with anyone other than that person, and it does not confirm or deny whether such data exists. HR staff use the HRIS directly for HR records; they do not get them through the helpdesk.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"refuse\",\n \"message\": \"I can't share or confirm anyone's personal information (such as pay, home address, personal phone, health or leave reasons, or performance) with anyone other than that person. Employee data privacy (POL-PRIV-01): The helpdesk may share directory details: name, title, department, work email, manager and office location. It never shares anyone's personal data (home address, personal phone, salary, health or leave reasons, performance information) with anyone other than that person, and it does not confirm or deny whether such data exists. HR staff use the HRIS directly for HR records; they do not get them through the helpdesk.\",\n \"cited_policy_ids\": [\n  \"POL-PRIV-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

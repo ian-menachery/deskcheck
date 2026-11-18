@@ -1,0 +1,46 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E017 Diego Alvarez, Sales Manager, Sales\n</session>\n\nNoah Fischer told me he's quitting, last day December 5. Also, he's been downloading the entire customer list to a USB drive."
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"security\",\n \"summary\": \"Possible data theft or sabotage reported; Security should review at once (POL-OFF-02). Requester E017 Diego Alvarez (Sales Manager) wrote: \\\"Noah Fischer told me he's quitting, last day December 5. Also, he's been downloading the entire customer list to a USB drive.\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"security\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Noah Fischer\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E036\", \"name\": \"Noah Fischer\", \"email\": \"noah.fischer@fernhollow.test\", \"title\": \"Sales Engineer\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-03-04\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E036\",\n \"last_day\": \"2026-12-05\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1002\", \"access_removed_at\": \"2026-12-05 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"I've passed this to the Security team (ticket ESC-1001); they will follow up with you. Started offboarding for Noah Fischer (OFF-1002): access is removed at 2026-12-05 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

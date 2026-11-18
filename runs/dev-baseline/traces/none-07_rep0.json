@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E036 Noah Fischer, Sales Engineer, Sales\n</session>\n\nAm I allowed to do freelance consulting on weekends?"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"hr\",\n \"summary\": \"No written policy or helpdesk rule covers this; a person needs to answer. Requester E036 Noah Fischer (Sales Engineer) wrote: \\\"Am I allowed to do freelance consulting on weekends?\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"hr\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the HR team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

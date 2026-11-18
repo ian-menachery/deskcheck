@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nCan I fly premium economy to the Frankfurt conference? It's an 8-hour flight."
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-TRV-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-TRV-01\", \"title\": \"Business travel\", \"text\": \"Book flights and hotels through the travel desk at least 14 days ahead where possible. Economy class for flights under 6 hours; premium economy is allowed for longer flights. Travel needs your manager's approval before booking.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Here is what company policy says. Business travel (POL-TRV-01): Book flights and hotels through the travel desk at least 14 days ahead where possible. Economy class for flights under 6 hours; premium economy is allowed for longer flights. Travel needs your manager's approval before booking.\",\n \"cited_policy_ids\": [\n  \"POL-TRV-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

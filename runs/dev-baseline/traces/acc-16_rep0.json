@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E027 Peter Novak, Finance Controller, Finance\n</session>\n\nPlease file a BI request for Aisha Bello."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Aisha Bello\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E028\", \"name\": \"Aisha Bello\", \"email\": \"aisha.bello@fernhollow.test\", \"title\": \"Payroll Specialist\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2022-02-14\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\", \"payroll\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E028\",\n \"system_id\": \"bi\",\n \"justification\": \"Requested by Peter Novak: Please file a BI request for Aisha Bello.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Peter Novak\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Aisha Bello: Analytics dashboards (BI), routed to manager Peter Novak for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

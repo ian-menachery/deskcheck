@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nFatima needs BI, and Jordan needs BI as well."
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E011\",\n \"system_id\": \"bi\",\n \"justification\": \"Fatima needs BI, and Jordan needs BI as well.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Marcus Webb\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E012\",\n \"system_id\": \"bi\",\n \"justification\": \"Fatima needs BI, and Jordan needs BI as well.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": false, \"error\": \"E012 (contractor, Engineering) is not eligible for bi (POL-ACC-02); the helpdesk cannot make exceptions\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed bi for E011, routed to manager Marcus Webb. E012 (contractor, Engineering) is not eligible for bi (POL-ACC-02); the helpdesk cannot make exceptions\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

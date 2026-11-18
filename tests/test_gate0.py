@@ -95,3 +95,10 @@ def test_case_counts_match_scope():
     for c in CASES:
         got[c["tags"][0]] = got.get(c["tags"][0], 0) + 1
     assert got == want
+
+
+def test_case_files_match_the_frozen_hashes():
+    from deskcheck.cases import CASES_FILE, ROOT, SPLIT_FILE, sha256
+    frozen = dict(line.split()[::-1] for line in (ROOT / "cases" / "FROZEN.sha256").read_text().splitlines())
+    assert frozen["cases/cases.jsonl"] == sha256(CASES_FILE)
+    assert frozen["cases/split.json"] == sha256(SPLIT_FILE)

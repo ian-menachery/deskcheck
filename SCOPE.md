@@ -208,6 +208,8 @@ next run, stop and report what ran.
 | Date | Hours to date | What changed | Next |
 |---|---|---|---|
 | 2026-11-17 | ~0.5 | Repo created; name, models (Opus 5.5, Sonnet 5.5, Haiku 5.5), Haiku as the tuning model, and the $10 cap chosen by Ian. SCOPE drafted and **approved by Ian as drafted**. | Company data and tools. |
+| 2026-11-18 | ~4 | Company data, validated tools, grader, 130 cases. Ian approved a 20-case sample. **Case set frozen**: `cases.jsonl` sha256 `c5724f8a…a566a5`, `split.json` `aa2e98bd…f9804e`, commit `7f64355`. Gate 0 offline checks pass (oracle 130/130, null 5/130, 22 probes rejected, 7 traps accepted). | Router and LLM pilot. |
+| 2026-11-18 | ~5 | **Amendment:** the router is written by a separate subagent that sees only dev (DECISIONS 5); the first router, written here after the cases, was discarded unrun on test. The limit "the same session writes the cases, the prompt and the router" now applies to the prompt only. | Ian adds the API key; Haiku pilot. |
 
 ## Gate results
 

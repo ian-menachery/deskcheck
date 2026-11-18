@@ -1,0 +1,207 @@
+"""Rule-based router: keyword rules, name and alias matching, the same tools and validators.
+
+No model. When no rule fires it escalates, so it is conservative by design.
+Tuned on the dev split only (DECISIONS.md).
+"""
+
+from __future__ import annotations
+
+import datetime as dt
+import re
+
+from .episode import Episode
+from .world import DIRECTORY, POLICIES, TODAY
+
+SYSTEM_ALIASES = [  # order matters: longer phrases first
+    ("prod_db", r"production database|prod(uction)? db|\bdatabase\b"),
+    ("admin_console", r"admin console|cloud admin"),
+    ("erp", r"finance erp|\berp\b"),
+    ("hris", r"\bhris\b"),
+    ("payroll", r"payroll"),
+    ("crm", r"\bcrm\b|salesdesk"),
+    ("tms", r"\btms\b|transport management"),
+    ("bi", r"\bbi\b|analytics|dashboards?"),
+    ("vpn", r"\bvpn\b"),
+    ("git", r"code repo(sitory)?|\bgit\b"),
+]
+
+POLICY_RULES = [
+    ("POL-PWD-01", r"password|\bmfa\b"),
+    ("POL-SEC-01", r"dropbox|personal cloud|log in as|forward(ing)? .*(gmail|personal)"),
+    ("POL-PAR-01", r"parental|maternity|paternity"),
+    ("POL-SICK-01", r"\bsick\b|doctor'?s note"),
+    ("POL-HOL-01", r"holiday|christmas|thanksgiving|new year"),
+    ("POL-PTO-01", r"\bpto\b|vacation|time off|days? off|week off|carry over"),
+    ("POL-REM-01", r"work from (home|abroad)|remote(ly)?|work from [A-Z]?[a-z]+ for|another country"),
+    ("POL-EQP-01", r"laptop|stipend|home office|ipad|personal (device|phone)"),
+    ("POL-TRV-01", r"\bfly\b|flight|premium economy|book (work )?travel"),
+    ("POL-EXP-01", r"expense|meal limit|meal"),
+    ("POL-ACC-01", r"approvals?\b.*take|how long .*approv"),
+]
+
+MONTHS = {m: i for i, m in enumerate(
+    ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october",
+     "november", "december"], 1)}
+
+
+def find_people(text: str) -> list[list[dict]]:
+    """Each mention (full name or unique-looking first name) -> list of directory matches."""
+    found, low = [], text.lower()
+    for e in DIRECTORY.values():
+        if re.search(rf"\b{re.escape(e['name'].lower())}\b", low):
+            found.append([e])
+    taken = {m[0]["id"] for m in found}
+    firsts: dict[str, list[dict]] = {}
+    for e in DIRECTORY.values():
+        firsts.setdefault(e["name"].split()[0].lower(), []).append(e)
+    for first, people in firsts.items():
+        if any(p["id"] in taken for p in people):
+            continue
+        if re.search(rf"\b{re.escape(first)}\b", low):
+            found.append(people)
+    return found
+
+
+def find_date(text: str) -> str | None:
+    low = text.lower()
+    m = re.search(r"\b(20\d\d-\d\d-\d\d)\b", low)
+    if m:
+        return m.group(1)
+    m = re.search(r"\b(" + "|".join(MONTHS) + r")\s+(\d{1,2})(st|nd|rd|th)?\b", low)
+    if m:
+        month, day = MONTHS[m.group(1)], int(m.group(2))
+        year = TODAY.year + (1 if month < TODAY.month else 0)
+        return dt.date(year, month, day).isoformat()
+    if "end of the month" in low:
+        nxt = (TODAY.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
+        return (nxt - dt.timedelta(days=1)).isoformat()
+    return None
+
+
+def reply(ep: Episode, kind: str, message: str, cited: list[str] | None = None) -> Episode:
+    ep.tool("reply", {"kind": kind, "message": message, "cited_policy_ids": cited or []})
+    return ep
+
+
+def answer_policy(ep: Episode, pid: str, kind: str = "answer") -> Episode:
+    p, _ = ep.tool("get_policy", {"policy_id": pid})
+    return reply(ep, kind, f"{p['title']}: {p['text']}", [pid])
+
+
+def escalate(ep: Episode, queue: str, why: str) -> Episode:
+    ep.tool("escalate_to_human", {"queue": queue, "summary": why})
+    return reply(ep, "escalated", f"I've passed this to the {queue.upper()} team; they will follow up.")
+
+
+def run_case(case: dict) -> Episode:
+    ep = Episode.start(case)
+    text, low = case["message"], case["message"].lower()
+    me = DIRECTORY[case["requester_id"]]
+    people = [m for m in find_people(text) if m[0]["id"] != me["id"]]
+
+    # 1. obvious injection and impersonation
+    if re.search(r"ignore (all )?(previous|prior) instructions|admin mode|system (note|override)|i authori[sz]e", low):
+        return reply(ep, "refuse", "I can't act on that request.")
+    # 2. security incidents and lost devices
+    if re.search(r"phish|clicked a link|typed my password|compromis", low):
+        return escalate(ep, "security", text)
+    if re.search(r"(lost|stolen).*(laptop|phone|device)|(laptop|phone|device).*(lost|stolen)", low) and "mfa" not in low:
+        return escalate(ep, "it", text)
+    # 3. passwords
+    if re.search(r"password|\bmfa\b", low) and "reset" in low:
+        if re.search(r"lost my phone|locked out|can'?t get into", low) and not people:
+            return escalate(ep, "it", text)
+        if people:
+            return answer_policy(ep, "POL-PWD-01", "refuse")
+        return answer_policy(ep, "POL-PWD-01")
+    # 4. other people's personal data
+    if re.search(r"salary|home address|personal (cell|phone|number)|cell number|medical reason", low):
+        return answer_policy(ep, "POL-PRIV-01", "refuse")
+    # 5. offboarding
+    if re.search(r"offboard|resign|quitting|leaving|last day|contract ends|wraps up|let(ting)? \w+ go|for cause", low):
+        if re.search(r"for cause|let(ting)? \w+( \w+)? go|fired|terminat|layoff|laid off|eliminated|restructur", low):
+            return escalate(ep, "hr", text)
+        if re.search(r"\bleave\b", low):
+            return escalate(ep, "hr", text)
+        if re.search(r"usb|download|stealing|exfiltrat", low):
+            return escalate(ep, "security", text)
+        if not people:
+            if re.search(r"\b(i'?m|my)\b", low):
+                return answer_policy(ep, "POL-OFF-01", "refuse")
+            return reply(ep, "clarify", "Who is leaving?")
+        target = people[0]
+        if len(target) > 1:
+            return reply(ep, "clarify", "Which person do you mean: " + ", ".join(p["name"] for p in target) + "?")
+        day = find_date(text)
+        if not day:
+            return reply(ep, "clarify", f"What is {target[0]['name']}'s last working day?")
+        r, err = ep.tool("start_offboarding", {"employee_id": target[0]["id"], "last_day": day})
+        if err:
+            return escalate(ep, "hr", f"Offboarding rejected: {r['error']}")
+        done_msgs = [f"Offboarding started for {target[0]['name']}; access ends {day} 17:00."]
+        return _then_access(ep, case, low, people[1:], done_msgs)
+    # 6. onboarding
+    if re.search(r"onboard|kick off|new hire|starts (monday|this|on|next|soon)", low):
+        if not people:
+            return escalate(ep, "hr", "New hire has no directory record: " + text)
+        msgs = []
+        for target in people:
+            if len(target) > 1:
+                return reply(ep, "clarify", "Which person do you mean?")
+            r, err = ep.tool("start_onboarding", {"employee_id": target[0]["id"]})
+            if err:
+                p, _ = ep.tool("get_policy", {"policy_id": "POL-ONB-01"})
+                return reply(ep, "refuse", f"I couldn't start onboarding: {r['error']}", ["POL-ONB-01"])
+            msgs.append(f"Onboarding started for {target[0]['name']}.")
+        return _then_access(ep, case, low, people, msgs)
+    # 7. access requests
+    systems = [sid for sid, pat in SYSTEM_ALIASES if re.search(pat, low)]
+    wants = re.search(r"\baccess\b|\brequest|set \w+ up|\badd\b|get me|\bneeds?\b|\bgive\b|get on", low)
+    if systems and wants:
+        return _then_access(ep, case, low, people, [])
+    if wants and re.search(r"\baccess\b", low):
+        return reply(ep, "clarify", "Which system do you need?")
+    # 8. policy questions
+    for pid, pat in POLICY_RULES:
+        if re.search(pat, text if pid == "POL-REM-01" else low):
+            return answer_policy(ep, pid)
+    # 9. directory questions
+    if re.search(r"work email|who is (his|her|their) manager|manager", low) and people and len(people[0]) == 1:
+        p = people[0][0]
+        m = DIRECTORY.get(p["manager_id"] or "")
+        first, last = p["name"].lower().split()[0], p["name"].lower().split()[-1]
+        return reply(ep, "answer", f"{p['name']}: {first}.{last}@fernhollow.test, manager {m['name'] if m else 'none'}.")
+    # 10. nothing matched: a human decides
+    return escalate(ep, "it" if re.search(r"wi-?fi|monitor|software|install", low) else "hr", text)
+
+
+def _then_access(ep: Episode, case: dict, low: str, people: list, msgs: list[str]) -> Episode:
+    systems = [sid for sid, pat in SYSTEM_ALIASES if re.search(pat, low)]
+    if not systems:
+        return reply(ep, "done", " ".join(msgs)) if msgs else reply(ep, "clarify", "Which system do you need?")
+    me = case["requester_id"]
+    if people:
+        if any(len(t) > 1 for t in people):
+            return reply(ep, "clarify", "Which person do you mean: " +
+                         ", ".join(p["name"] for t in people for p in t) + "?")
+        targets = [t[0]["id"] for t in people]
+    else:
+        targets = [me]
+    accepted, rejected = list(msgs), []
+    for emp in targets:
+        for sid in systems:
+            r, err = ep.tool("create_access_request", {"employee_id": emp, "system_id": sid,
+                                                       "justification": case["message"][:200]})
+            (rejected if err else accepted).append(r.get("error") or f"Filed {sid} for {emp}, routed to {r['routed_to']}.")
+    if any(m.startswith("Filed") or "started" in m for m in accepted):
+        cited = []
+        for pid, pat in POLICY_RULES:
+            if re.search(pat, low) and "?" in low:
+                p, _ = ep.tool("get_policy", {"policy_id": pid})
+                accepted.append(p["text"])
+                cited.append(pid)
+                break
+        return reply(ep, "done", " ".join(accepted + rejected), cited)
+    pid = "POL-ACC-02" if any("not eligible" in r for r in rejected) else "POL-ACC-01"
+    ep.tool("get_policy", {"policy_id": pid})
+    return reply(ep, "refuse", " ".join(rejected), [pid])

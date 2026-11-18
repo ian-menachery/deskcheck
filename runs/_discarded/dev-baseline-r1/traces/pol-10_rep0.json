@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E016 Samantha Lee, Account Executive, Sales\n</session>\n\nIs there a home office stipend?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-EQP-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-EQP-01\", \"title\": \"Laptops and equipment\", \"text\": \"Every employee gets a company laptop, replaced every 3 years. A lost or stolen laptop or phone must be reported to IT within 24 hours so it can be locked and wiped; the helpdesk escalates these to IT. Full-time employees can claim a one-time home-office stipend of up to $300 through expenses. Personal devices may access email and team chat only, through the company app.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Laptops and equipment: Every employee gets a company laptop, replaced every 3 years. A lost or stolen laptop or phone must be reported to IT within 24 hours so it can be locked and wiped; the helpdesk escalates these to IT. Full-time employees can claim a one-time home-office stipend of up to $300 through expenses. Personal devices may access email and team chat only, through the company app.\",\n \"cited_policy_ids\": [\n  \"POL-EQP-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

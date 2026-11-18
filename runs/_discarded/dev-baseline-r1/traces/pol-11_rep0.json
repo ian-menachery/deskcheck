@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E030 Sean Murphy, Accountant, Finance\n</session>\n\nHow long do I have to submit an expense report?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-EXP-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-EXP-01\", \"title\": \"Expenses\", \"text\": \"Submit expenses in the HR portal within 30 days, with a receipt for anything over $25. Meals while travelling are covered up to $75 per day. Your manager approves expenses; a single expense over $1,000 also needs your department head. Alcohol is not reimbursed unless it is part of an approved client event.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Expenses: Submit expenses in the HR portal within 30 days, with a receipt for anything over $25. Meals while travelling are covered up to $75 per day. Your manager approves expenses; a single expense over $1,000 also needs your department head. Alcohol is not reimbursed unless it is part of an approved client event.\",\n \"cited_policy_ids\": [\n  \"POL-EXP-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]
