@@ -1,0 +1,7 @@
+{
+  "name": "deskcheck-site-handoff",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "vitest run", "typecheck": "tsc --noEmit" },
+  "devDependencies": { "typescript": "^5", "vitest": "^5.1.0", "@types/node": "^24.19.2" }
+}
