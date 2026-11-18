@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 from . import baseline, episode, llm
 from .budget import Budget, BudgetExceeded
-from .cases import CASES_FILE, ROOT, select, sha256
+from .cases import CASES_FILE, GATE3_FILE, ROOT, select, sha256
 from .grade import grade
 from .metrics import gate2, summarize
 
@@ -62,7 +62,7 @@ def main(argv=None):
     ap.add_argument("--agent", required=True, choices=["oracle", "null", "baseline", "llm"])
     ap.add_argument("--model", choices=list(llm.MODELS))
     ap.add_argument("--effort", default="medium", choices=["low", "medium", "high"])
-    ap.add_argument("--split", default="dev", choices=["dev", "test", "all"])
+    ap.add_argument("--split", default="dev", choices=["dev", "test", "all", "gate3"])
     ap.add_argument("--cases", help="comma-separated case ids (pilots)")
     ap.add_argument("--reps", type=int, default=1)
     ap.add_argument("--workers", type=int, default=4)
@@ -73,13 +73,13 @@ def main(argv=None):
     (out / "traces").mkdir(parents=True, exist_ok=True)
     cases = select(a.split, a.cases.split(",") if a.cases else None)
     meta = {"agent": a.agent, "split": a.split, "cases": a.cases, "reps": a.reps,
-            "cases_sha256": sha256(CASES_FILE), "git": git_head()}
+            "cases_sha256": sha256(GATE3_FILE if a.split == "gate3" else CASES_FILE), "git": git_head()}
     if a.agent == "llm":
         if not a.model:
             raise SystemExit("--model is required for --agent llm")
         meta.update(model=llm.MODELS[a.model], effort=a.effort, prompt_sha256=llm.prompt_sha(a.effort),
                     prompt_config=llm.config(a.effort))
-        if a.split == "test":
+        if a.split in ("test", "gate3"):
             frozen = FROZEN_PROMPT.read_text().split()[0] if FROZEN_PROMPT.exists() else None
             if frozen != llm.prompt_sha(a.effort):
                 raise SystemExit("test runs need the frozen prompt: prompts/FROZEN.sha256 does not match")

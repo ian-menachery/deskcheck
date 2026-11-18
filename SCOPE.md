@@ -235,6 +235,7 @@ wording nobody tuned for.
 | 2026-11-18 | ~5 | **Amendment:** the router is written by a separate subagent that sees only dev (DECISIONS 5); the first router, written here after the cases, was discarded unrun on test. The limit "the same session writes the cases, the prompt and the router" now applies to the prompt only. | Ian adds the API key; Haiku pilot. |
 | 2026-11-18 | ~7.5 | Blind router in (dev 40/40). Haiku pilot 5/5 at $0.0008/case. Dev tuning v0 38/40, v1 39/40, v2 40/40 and 39/40; **prompt v2 frozen** (DECISIONS 8). Spend so far $0.128. Ian's key expires 2026-12-31, so every paid run must finish before then. | Gate 1 on test; ask Ian before the Haiku test run and the Opus/Sonnet pilots. |
 | 2026-11-18 | ~8 | **Gate 1: router 85/90 on test (94.4%), 0 wrong actions**, so the Gate 2 "beats baseline by 15" bar is unreachable for every model. **Amendments (Ian, 2026-11-18):** Sonnet 5.5 dropped from Gate 2; Gate 3 (unseen wording) added with bars above, written before its cases exist. | Haiku test x3, Opus pilot + test, Gate 3 cases. |
+| 2026-11-18 | ~10 | Gate 2 ran (Haiku FAIL, Opus FAIL, see Gate results). Gate 3: 60 cases written blind by a fresh subagent; label checks pass (oracle 60/60, null 0/60, 16 probes, 12 trap cases); Ian approved a 10-case sample. **Gate 3 set frozen**: `cases_g3.jsonl` sha256 `ccaaba90…20c93c0`. Spend $3.11. | Gate 3 runs, once each. |
 
 ## Gate results
 
