@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nFatima's going on medical leave starting Monday, probably for ~8 weeks. Do we need to turn off her access while she's out, or offboard her, or something? lmk what you need from me"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-OFF-02\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-OFF-02\", \"title\": \"Involuntary exits and leaves of absence\", \"text\": \"Terminations for cause, layoffs and any other involuntary exit are handled by HR only. The helpdesk does not start offboarding for them, even when a manager asks; it escalates to HR, who coordinate the timing of access removal. A leave of absence (parental, medical, personal) is not an offboarding: access stays on and HR handles the leave. If there is a risk of data theft or sabotage, escalate to Security at once.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"hr\",\n \"summary\": \"Leave of absence: not an offboarding; access stays on and HR handles the leave (POL-OFF-02). Requester E009 Marcus Webb (Engineering Manager) wrote: \\\"Fatima's going on medical leave starting Monday, probably for ~8 weeks. Do we need to turn off her access while she's out, or offboard her, or something? lmk what you need from me\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"hr\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the HR team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": [\n  \"POL-OFF-02\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

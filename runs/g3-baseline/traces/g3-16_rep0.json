@@ -1,0 +1,56 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E026 Olivia Grant, HR Generalist, HR\n</session>\n\nCan you kick off onboarding for the new financial analyst starting Thursday? Lucia F-something, she's on Peter's team. Laptop needs to get to her asap"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Lucia Ferreira\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E029\", \"name\": \"Lucia Ferreira\", \"email\": \"lucia.ferreira@fernhollow.test\", \"title\": \"Financial Analyst\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-11-19\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Peter Novak\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E027\", \"name\": \"Peter Novak\", \"email\": \"peter.novak@fernhollow.test\", \"title\": \"Finance Controller\", \"department\": \"Finance\", \"manager\": \"E002 David Osei\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2018-11-05\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\", \"bi\"], \"notes\": \"Owner of the Finance ERP.\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E029\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1001\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Lucia Ferreira\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E029\", \"name\": \"Lucia Ferreira\", \"email\": \"lucia.ferreira@fernhollow.test\", \"title\": \"Financial Analyst\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"onboarding\", \"start_date\": \"2026-11-19\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started onboarding for Lucia Ferreira (ONB-1001): accounts created for email, chat, hr_portal, erp; the laptop ships to arrive the business day before the start date.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

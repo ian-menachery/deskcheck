@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E038 Victor Huang, Site Reliability Engineer, Engineering\n</session>\n\nMy partner and I are adopting!! \ud83c\udf89 placement is probably early February. How much parental leave do I get and is it paid? I've been here since Jan '22 if that matters"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-PAR-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-PAR-01\", \"title\": \"Parental leave\", \"text\": \"Birth, adoptive and foster parents with at least 6 months of service get 16 weeks of fully paid parental leave, taken within 12 months of the child's arrival. Employees with less than 6 months of service get 6 weeks paid. Tell HR at least 30 days before the leave starts when possible.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Here is what company policy says. Parental leave (POL-PAR-01): Birth, adoptive and foster parents with at least 6 months of service get 16 weeks of fully paid parental leave, taken within 12 months of the child's arrival. Employees with less than 6 months of service get 6 weeks paid. Tell HR at least 30 days before the leave starts when possible.\",\n \"cited_policy_ids\": [\n  \"POL-PAR-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

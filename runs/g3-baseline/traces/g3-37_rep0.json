@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E034 Mark Ellison, Software Engineer, Engineering\n</session>\n\nMy last day's the 27th \u2014 what do I do with my laptop and badge? Drop them at the Boston office or ship them somewhere?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-OFF-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-OFF-01\", \"title\": \"Offboarding (voluntary departures)\", \"text\": \"When an employee resigns or a contract ends, their manager or HR starts offboarding with the last working day. Access to every system is removed at 17:00 local time on the last day. Laptops and badges must be returned within 5 business days after the last day; IT emails a prepaid return label. Questions about final pay or unused PTO go to HR. An employee cannot start their own offboarding; they tell their manager or HR.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"You can't start your own offboarding; please tell your manager or HR, who will start it with your last day. Offboarding (voluntary departures) (POL-OFF-01): When an employee resigns or a contract ends, their manager or HR starts offboarding with the last working day. Access to every system is removed at 17:00 local time on the last day. Laptops and badges must be returned within 5 business days after the last day; IT emails a prepaid return label. Questions about final pay or unused PTO go to HR. An employee cannot start their own offboarding; they tell their manager or HR.\",\n \"cited_policy_ids\": [\n  \"POL-OFF-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

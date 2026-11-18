@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E004 Priya Raman, Sales Director, Sales\n</session>\n\nWe've got 6 people from a customer visiting the Chicago office on Thursday for a QBR. Is there guest wifi they can use, and how do they get on it?"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"it\",\n \"summary\": \"No written policy or helpdesk rule covers this; a person needs to answer. Requester E004 Priya Raman (Sales Director) wrote: \\\"We've got 6 people from a customer visiting the Chicago office on Thursday for a QBR. Is there guest wifi they can use, and how do they get on it?\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"it\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the IT team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

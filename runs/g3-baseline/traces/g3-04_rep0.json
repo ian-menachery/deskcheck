@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E027 Peter Novak, Finance Controller, Finance\n</session>\n\nHi \u2014 Sean is taking over the month-end variance reporting from me starting December, so he'll need the BI dashboards. Could you put that request in? Thanks, Peter"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Sean Murphy\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E030\", \"name\": \"Sean Murphy\", \"email\": \"sean.murphy@fernhollow.test\", \"title\": \"Accountant\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Remote\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-09-03\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E030\",\n \"system_id\": \"bi\",\n \"justification\": \"Requested by Peter Novak: Hi \\u2014 Sean is taking over the month-end variance reporting from me starting December, so he'll need the BI dashboards. Could you put that request in? Thanks, Peter\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Peter Novak\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Sean Murphy: Analytics dashboards (BI), routed to manager Peter Novak for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

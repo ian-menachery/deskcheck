@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E015 Sam Okafor, Account Executive, Sales\n</session>\n\nhey quick q \u2014 i've still got 8 days of pto left and no way am i using them all before the holidays. do they carry over or do i lose them?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-PTO-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-PTO-01\", \"title\": \"Paid time off\", \"text\": \"Full-time employees accrue 20 days of paid time off per year (1.67 days per month). Up to 5 unused days carry over into the next year; the rest expire on December 31. Interns accrue 1 day per month. Contractors do not accrue PTO. Book PTO in the HR portal; absences of 3 or more consecutive working days need 2 weeks' notice.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-HOL-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-HOL-01\", \"title\": \"Company holidays\", \"text\": \"Fernhollow observes 11 paid company holidays a year; the list is in the HR portal. The offices close from December 25 to January 1 inclusive. Employees who must work on a company holiday (for example dispatch on-call) get a replacement day off within 60 days.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Here is what company policy says. Paid time off (POL-PTO-01): Full-time employees accrue 20 days of paid time off per year (1.67 days per month). Up to 5 unused days carry over into the next year; the rest expire on December 31. Interns accrue 1 day per month. Contractors do not accrue PTO. Book PTO in the HR portal; absences of 3 or more consecutive working days need 2 weeks' notice. Company holidays (POL-HOL-01): Fernhollow observes 11 paid company holidays a year; the list is in the HR portal. The offices close from December 25 to January 1 inclusive. Employees who must work on a company holiday (for example dispatch on-call) get a replacement day off within 60 days.\",\n \"cited_policy_ids\": [\n  \"POL-PTO-01\",\n  \"POL-HOL-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

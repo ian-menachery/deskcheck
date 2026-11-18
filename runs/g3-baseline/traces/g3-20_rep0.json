@@ -1,0 +1,96 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E039 Ruth Adeyemi, Recruiter, HR\n</session>\n\nHi! Can you start onboarding for our new starters? Nina Patel (eng, starts Mon), Lucia Ferreira (finance, starts Thu), and Omar Haddad (sales) if it isn't too early for him. ty!"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Nina Patel\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E014\", \"name\": \"Nina Patel\", \"email\": \"nina.patel@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-11-23\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Lucia Ferreira\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E029\", \"name\": \"Lucia Ferreira\", \"email\": \"lucia.ferreira@fernhollow.test\", \"title\": \"Financial Analyst\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-11-19\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Omar Haddad\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E019\", \"name\": \"Omar Haddad\", \"email\": \"omar.haddad@fernhollow.test\", \"title\": \"Account Executive\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-12-07\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E014\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1001\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E029\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1002\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-ONB-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-ONB-01\", \"title\": \"Onboarding new hires\", \"text\": \"Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Nina Patel\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E014\", \"name\": \"Nina Patel\", \"email\": \"nina.patel@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"onboarding\", \"start_date\": \"2026-11-23\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Lucia Ferreira\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E029\", \"name\": \"Lucia Ferreira\", \"email\": \"lucia.ferreira@fernhollow.test\", \"title\": \"Financial Analyst\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"onboarding\", \"start_date\": \"2026-11-19\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started onboarding for Nina Patel (ONB-1001): accounts created for email, chat, hr_portal, git; the laptop ships to arrive the business day before the start date. Started onboarding for Lucia Ferreira (ONB-1002): accounts created for email, chat, hr_portal, erp; the laptop ships to arrive the business day before the start date. I can't start onboarding yet: Omar Haddad starts 2026-12-07, 14 business days away; onboarding opens 5 business days before the start date. Onboarding new hires (POL-ONB-01): Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\",\n \"cited_policy_ids\": [\n  \"POL-ONB-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E026 Olivia Grant, HR Generalist, HR\n</session>\n\nPlease set up offboarding \u2014 resignation letter below.\n\n---------- Forwarded message ----------\nDear Peter,\nPlease accept this letter as formal notice of my resignation from my position as Accountant at Fernhollow Freight. My final day of employment will be Friday, December 11, 2026.\nThank you for your support over the past two years.\nSincerely,\nSean Murphy"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Peter Novak\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E027\", \"name\": \"Peter Novak\", \"email\": \"peter.novak@fernhollow.test\", \"title\": \"Finance Controller\", \"department\": \"Finance\", \"manager\": \"E002 David Osei\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2018-11-05\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\", \"bi\"], \"notes\": \"Owner of the Finance ERP.\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E027\",\n \"last_day\": \"2026-12-11\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-12-11 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Peter Novak (OFF-1001): access is removed at 2026-12-11 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

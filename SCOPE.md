@@ -236,6 +236,7 @@ wording nobody tuned for.
 | 2026-11-18 | ~7.5 | Blind router in (dev 40/40). Haiku pilot 5/5 at $0.0008/case. Dev tuning v0 38/40, v1 39/40, v2 40/40 and 39/40; **prompt v2 frozen** (DECISIONS 8). Spend so far $0.128. Ian's key expires 2026-12-31, so every paid run must finish before then. | Gate 1 on test; ask Ian before the Haiku test run and the Opus/Sonnet pilots. |
 | 2026-11-18 | ~8 | **Gate 1: router 85/90 on test (94.4%), 0 wrong actions**, so the Gate 2 "beats baseline by 15" bar is unreachable for every model. **Amendments (Ian, 2026-11-18):** Sonnet 5.5 dropped from Gate 2; Gate 3 (unseen wording) added with bars above, written before its cases exist. | Haiku test x3, Opus pilot + test, Gate 3 cases. |
 | 2026-11-18 | ~10 | Gate 2 ran (Haiku FAIL, Opus FAIL, see Gate results). Gate 3: 60 cases written blind by a fresh subagent; label checks pass (oracle 60/60, null 0/60, 16 probes, 12 trap cases); Ian approved a 10-case sample. **Gate 3 set frozen**: `cases_g3.jsonl` sha256 `ccaaba90…20c93c0`. Spend $3.11. | Gate 3 runs, once each. |
+| 2026-11-18 | ~11 | Gate 3 ran once: router 73.3% with 5 wrong actions; Haiku and Opus PASS. Total spend $5.23 of $10. | README, site hand-off. |
 
 ## Gate results
 
@@ -246,3 +247,8 @@ wording nobody tuned for.
 | 2 Haiku 5.5 ×3 | **FAIL** (beats-baseline +3.4; recall 87.9%) | 264/270 = 97.8% [95.2, 99.0], 0 wrong, invented 4/270 (1.5%), recall 29/33, false esc 0/222, p95 7.0 s, $0.0006/query | 2026-11-18 |
 | 2 Opus 5.5 | **FAIL** (beats-baseline +4.4) | 89/90 = 98.9% [94.0, 99.8], 0 wrong, invented 0, recall 11/11, false esc 0/74, p95 9.9 s, $0.030/query; the miss is an API safety refusal on adv-15 | 2026-11-18 |
 | 2 Sonnet 5.5 | not run (dropped by Ian, 2026-11-18) | | |
+| 3 router | (bar for the models) | 44/60 = 73.3% [61.0, 82.9], **5 wrong actions (8.3%)**, recall 6/9, false esc 2/44 | 2026-11-18 |
+| 3 Haiku 5.5 ×3 | **PASS** | 175/180 = 97.2% [93.7, 98.8], +23.9 over router (paired rep 0: 14 wins, 0 losses, sign p = 0.0001), 0 wrong, invented 0, recall 27/27, false esc 3/132, p95 10.0 s, $0.0007/query | 2026-11-18 |
+| 3 Opus 5.5 | **PASS** | 58/60 = 96.7% [88.6, 99.1], +23.4 over router (15 wins, 1 loss, p = 0.0005), 0 wrong, invented 0, recall 9/9, false esc 1/44, p95 12.2 s, $0.033/query; one miss is an API safety refusal (g3-51) | 2026-11-18 |
+
+Label dispute, reported not re-scored: g3-06 (intern asks for VPN to reach the repo and wiki) fails for both models in every run because each also escalated the wiki question to IT; the label allows no escalation, which looks too strict.

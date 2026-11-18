@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E036 Noah Fischer, Sales Engineer, Sales\n</session>\n\nugh been out sick since last wednesday (flu, whole house has it). should be back thursday. do i need a doctors note for this or is that only for longer stuff"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-SICK-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-SICK-01\", \"title\": \"Sick leave\", \"text\": \"Full-time employees and interns get 10 paid sick days per calendar year, separate from PTO. Sick days do not carry over. Absences longer than 3 consecutive working days need a doctor's note sent to HR. Contractors are covered by their agency's terms.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Here is what company policy says. Sick leave (POL-SICK-01): Full-time employees and interns get 10 paid sick days per calendar year, separate from PTO. Sick days do not carry over. Absences longer than 3 consecutive working days need a doctor's note sent to HR. Contractors are covered by their agency's terms.\",\n \"cited_policy_ids\": [\n  \"POL-SICK-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

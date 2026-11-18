@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E004 Priya Raman, Sales Director, Sales\n</session>\n\ncan you add TMS for Sam? they're picking up the Milwaukee freight lanes from Diego's team starting next week"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Sam\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E015\", \"name\": \"Sam Okafor\", \"email\": \"sam.okafor@fernhollow.test\", \"title\": \"Account Executive\", \"department\": \"Sales\", \"manager\": \"E004 Priya Raman\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2022-04-18\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}, {\"id\": \"E016\", \"name\": \"Samantha Lee\", \"email\": \"samantha.lee@fernhollow.test\", \"title\": \"Account Executive\", \"department\": \"Sales\", \"manager\": \"E004 Priya Raman\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2021-11-01\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\", \"bi\"], \"notes\": \"Goes by Sam.\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"clarify\",\n \"message\": \"There is more than one \\\"Sam\\\" in the directory: Sam Okafor (Account Executive, Sales); Samantha Lee (Account Executive, Sales). Which one do you mean?\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

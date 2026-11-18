@@ -1,0 +1,21 @@
+{
+ "agent": "llm",
+ "split": "gate3",
+ "cases": null,
+ "reps": 1,
+ "cases_sha256": "ccaaba90b083e4bf62f61a3255faef547ee057f90bc733fbb9bb8181e20c93c0",
+ "git": "cb95dd0",
+ "model": "claude-opus-5-5",
+ "effort": "medium",
+ "prompt_sha256": "4c06a815bc742931067b373358aa3647bdc6030f3c747621040dbfe93edf664c",
+ "prompt_config": {
+  "max_tokens": 8000,
+  "effort": "medium",
+  "thinking": {
+   "type": "adaptive",
+   "display": "summarized"
+  },
+  "max_calls": 8
+ },
+ "started": "2026-11-18 12:40:27"
+}

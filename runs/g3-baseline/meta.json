@@ -1,0 +1,9 @@
+{
+ "agent": "baseline",
+ "split": "gate3",
+ "cases": null,
+ "reps": 1,
+ "cases_sha256": "ccaaba90b083e4bf62f61a3255faef547ee057f90bc733fbb9bb8181e20c93c0",
+ "git": "cb95dd0",
+ "started": "2026-11-18 12:36:51"
+}

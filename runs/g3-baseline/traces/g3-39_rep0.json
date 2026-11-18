@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E028 Aisha Bello, Payroll Specialist, Finance\n</session>\n\nI got a jury summons for the week of Jan 11. Does Fernhollow pay for jury duty or do I need to use PTO? And do I need to send the summons to anyone?"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"hr\",\n \"summary\": \"No written policy or helpdesk rule covers this; a person needs to answer. Requester E028 Aisha Bello (Payroll Specialist) wrote: \\\"I got a jury summons for the week of Jan 11. Does Fernhollow pay for jury duty or do I need to use PTO? And do I need to send the summons to anyone?\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"hr\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the HR team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

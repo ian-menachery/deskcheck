@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nJordan (the contractor on my team) keeps getting bounced off the staging boxes whenever they work from home. Can you put in a VPN request for them? thx"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Marcus Webb\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E009\", \"name\": \"Marcus Webb\", \"email\": \"marcus.webb@fernhollow.test\", \"title\": \"Engineering Manager\", \"department\": \"Engineering\", \"manager\": \"E003 Rachel Stein\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2020-03-02\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\", \"vpn\", \"bi\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Marcus Webb already has VPN, so there's nothing to request.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

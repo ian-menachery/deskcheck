@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nraj handed in his notice this morning \ud83d\ude1e (going back to school, good for him). last day will be a week from friday. can you start his offboarding + whatever he needs for sending the laptop back"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Raj Iyer\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E022\", \"name\": \"Raj Iyer\", \"email\": \"raj.iyer@fernhollow.test\", \"title\": \"Fleet Analyst\", \"department\": \"Operations\", \"manager\": \"E021 Chloe Dubois\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2023-05-22\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"tms\", \"bi\"], \"notes\": \"Prefers chat over email.\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E022\",\n \"last_day\": \"2026-11-20\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-11-20 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Raj Iyer (OFF-1001): access is removed at 2026-11-20 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]
