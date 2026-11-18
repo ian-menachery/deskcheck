@@ -1,0 +1,15 @@
+[
+{"id": "email", "name": "Email and calendar", "tier": "baseline", "departments": "all", "employment_types": ["full_time", "contractor", "intern"], "approver": "manager"},
+{"id": "chat", "name": "Team chat", "tier": "baseline", "departments": "all", "employment_types": ["full_time", "contractor", "intern"], "approver": "manager"},
+{"id": "hr_portal", "name": "HR self-service portal", "tier": "baseline", "departments": "all", "employment_types": ["full_time", "contractor", "intern"], "approver": "manager"},
+{"id": "git", "name": "Code repository", "tier": "standard", "departments": ["Engineering", "IT"], "employment_types": ["full_time", "contractor", "intern"], "approver": "manager"},
+{"id": "crm", "name": "Salesdesk CRM", "tier": "standard", "departments": ["Sales", "Operations", "Executive"], "employment_types": ["full_time", "contractor"], "approver": "manager"},
+{"id": "tms", "name": "Transport management system (TMS)", "tier": "standard", "departments": ["Operations", "Sales", "Finance"], "employment_types": ["full_time", "contractor"], "approver": "manager"},
+{"id": "bi", "name": "Analytics dashboards (BI)", "tier": "standard", "departments": "all", "employment_types": ["full_time"], "approver": "manager"},
+{"id": "vpn", "name": "VPN", "tier": "standard", "departments": "all", "employment_types": ["full_time", "contractor", "intern"], "approver": "manager"},
+{"id": "erp", "name": "Finance ERP", "tier": "elevated", "departments": ["Finance", "Executive"], "employment_types": ["full_time"], "approver": "owner:E027"},
+{"id": "hris", "name": "HRIS (HR records)", "tier": "elevated", "departments": ["HR"], "employment_types": ["full_time"], "approver": "owner:E006"},
+{"id": "payroll", "name": "Payroll system", "tier": "restricted", "departments": ["Finance", "HR"], "employment_types": ["full_time"], "approver": "security"},
+{"id": "prod_db", "name": "Production database", "tier": "restricted", "departments": ["Engineering"], "employment_types": ["full_time"], "approver": "security"},
+{"id": "admin_console", "name": "Cloud admin console", "tier": "restricted", "departments": ["IT"], "employment_types": ["full_time"], "approver": "security"}
+]

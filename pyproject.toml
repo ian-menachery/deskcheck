@@ -1,0 +1,13 @@
+[project]
+name = "deskcheck"
+version = "0.1.0"
+description = "A helpdesk agent on deterministic, validated tools, measured against a rule-based router."
+requires-python = ">=3.12"
+dependencies = ["anthropic==0.104.1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
