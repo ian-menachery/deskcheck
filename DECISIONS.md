@@ -83,3 +83,14 @@ purpose; v2 says "if a write is rejected, explain the reason", and pushing it
 toward escalation risks escalating cases whose right answer is a refusal.
 Dev spend for tuning: $0.124 including the pilot. The frozen prompt sha is in
 `prompts/FROZEN.sha256`; the runner refuses a test run with any other prompt.
+
+## 9. Gate 3 ran once and nothing was re-scored (2026-11-18)
+
+The router, Haiku 5.5 (3 reps) and Opus 5.5 each ran once on the frozen Gate 3
+set with the frozen prompt and router. Two findings are reported rather than
+acted on. g3-06 fails for both models in every run because each also escalated
+the intern's wiki question, which the label forbids; the label looks too
+strict. Opus's misses on both sets (adv-15, g3-51) are API safety refusals, not
+agent decisions; their `stop_details` category was not saved, because the
+logging added after adv-15 went into the call record but not the result row.
+Sonnet 5.5 was not run (Ian, after Gate 1).

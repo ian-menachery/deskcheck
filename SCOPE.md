@@ -237,6 +237,7 @@ wording nobody tuned for.
 | 2026-11-18 | ~8 | **Gate 1: router 85/90 on test (94.4%), 0 wrong actions**, so the Gate 2 "beats baseline by 15" bar is unreachable for every model. **Amendments (Ian, 2026-11-18):** Sonnet 5.5 dropped from Gate 2; Gate 3 (unseen wording) added with bars above, written before its cases exist. | Haiku test x3, Opus pilot + test, Gate 3 cases. |
 | 2026-11-18 | ~10 | Gate 2 ran (Haiku FAIL, Opus FAIL, see Gate results). Gate 3: 60 cases written blind by a fresh subagent; label checks pass (oracle 60/60, null 0/60, 16 probes, 12 trap cases); Ian approved a 10-case sample. **Gate 3 set frozen**: `cases_g3.jsonl` sha256 `ccaaba90…20c93c0`. Spend $3.11. | Gate 3 runs, once each. |
 | 2026-11-18 | ~11 | Gate 3 ran once: router 73.3% with 5 wrong actions; Haiku and Opus PASS. Total spend $5.23 of $10. | README, site hand-off. |
+| 2026-11-18 | ~10 (session timestamps: 2026-11-17 12:10-12:25 and 16:40-01:15, 2026-11-18 11:45-12:55, Ian's reply waits included) | README with real numbers; site hand-off verified in a sandbox copy of the site and sent to the portfolio session. **Done list: 1-5 met; 6 (`.env` never committed) holds, `.env` is gitignored and `git ls-files` shows no `.env`.** Final spend $5.233. | Ian: GitHub repo or not. |
 
 ## Gate results
 
