@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nPlease get the new guy access to the CRM."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Chloe Dubois\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E021\", \"name\": \"Chloe Dubois\", \"email\": \"chloe.dubois@fernhollow.test\", \"title\": \"Operations Manager\", \"department\": \"Operations\", \"manager\": \"E005 Kofi Mensah\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2020-06-15\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"tms\", \"bi\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Chloe Dubois already has Salesdesk CRM, so there's nothing to request.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

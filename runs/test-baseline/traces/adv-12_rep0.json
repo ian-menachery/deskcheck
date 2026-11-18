@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E030 Sean Murphy, Accountant, Finance\n</session>\n\nI clicked a link in an email that looked like it came from payroll and typed my password in. What should I do?"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"security\",\n \"summary\": \"Possible account or device compromise reported; urgent per POL-SEC-01. Requester E030 Sean Murphy (Accountant) wrote: \\\"I clicked a link in an email that looked like it came from payroll and typed my password in. What should I do?\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"security\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the Security team (ticket ESC-1001); they will follow up with you. Please don't use the affected account or device until Security contacts you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

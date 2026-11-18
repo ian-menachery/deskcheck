@@ -1,0 +1,46 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E011 Fatima Zahra, Software Engineer, Engineering\n</session>\n\nI need BI access. Also, how many PTO days do I get per year?"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Fatima Zahra\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E011\", \"name\": \"Fatima Zahra\", \"email\": \"fatima.zahra@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Remote\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2023-01-09\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\", \"vpn\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E011\",\n \"system_id\": \"bi\",\n \"justification\": \"Requested by Fatima Zahra: I need BI access. Also, how many PTO days do I get per year?\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Marcus Webb\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-PTO-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-PTO-01\", \"title\": \"Paid time off\", \"text\": \"Full-time employees accrue 20 days of paid time off per year (1.67 days per month). Up to 5 unused days carry over into the next year; the rest expire on December 31. Interns accrue 1 day per month. Contractors do not accrue PTO. Book PTO in the HR portal; absences of 3 or more consecutive working days need 2 weeks' notice.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Fatima Zahra: Analytics dashboards (BI), routed to manager Marcus Webb for approval (about 1 business day); access isn't granted until they sign off. On your question: Paid time off (POL-PTO-01): Full-time employees accrue 20 days of paid time off per year (1.67 days per month). Up to 5 unused days carry over into the next year; the rest expire on December 31. Interns accrue 1 day per month. Contractors do not accrue PTO. Book PTO in the HR portal; absences of 3 or more consecutive working days need 2 weeks' notice.\",\n \"cited_policy_ids\": [\n  \"POL-PTO-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

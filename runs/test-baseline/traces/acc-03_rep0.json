@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nPlease set up VPN for Jordan Blake, he's joining the on-call rotation next week."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Jordan Blake\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E012\", \"name\": \"Jordan Blake\", \"email\": \"jordan.blake@fernhollow.test\", \"title\": \"Software Engineer (Contractor)\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Remote\", \"employment_type\": \"contractor\", \"status\": \"active\", \"start_date\": \"2026-08-03\", \"end_date\": \"2027-01-29\", \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E012\",\n \"system_id\": \"vpn\",\n \"justification\": \"Requested by Marcus Webb: Please set up VPN for Jordan Blake, he's joining the on-call rotation next week.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Marcus Webb\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Jordan Blake: VPN, routed to manager Marcus Webb for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

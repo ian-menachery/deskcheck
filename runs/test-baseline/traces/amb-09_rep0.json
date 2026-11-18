@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E017 Diego Alvarez, Sales Manager, Sales\n</session>\n\nPlease give Maria access to the CRM."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Diego Alvarez\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E017\", \"name\": \"Diego Alvarez\", \"email\": \"diego.alvarez@fernhollow.test\", \"title\": \"Sales Manager\", \"department\": \"Sales\", \"manager\": \"E004 Priya Raman\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2019-08-26\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\", \"bi\", \"tms\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Diego Alvarez already has Salesdesk CRM, so there's nothing to request.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

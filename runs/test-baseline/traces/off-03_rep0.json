@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nEthan Brooks's internship wraps up on December 18; please schedule his offboarding."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Ethan Brooks\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E013\", \"name\": \"Ethan Brooks\", \"email\": \"ethan.brooks@fernhollow.test\", \"title\": \"Engineering Intern\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"intern\", \"status\": \"active\", \"start_date\": \"2026-09-08\", \"end_date\": \"2026-12-18\", \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E013\",\n \"last_day\": \"2026-12-18\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-12-18 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Ethan Brooks (OFF-1001): access is removed at 2026-12-18 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

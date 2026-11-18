@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E005 Kofi Mensah, Operations Director, Operations\n</session>\n\nAlex is leaving at the end of the month, please offboard him."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Alex\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E010\", \"name\": \"Alex Chen\", \"email\": \"alex.chen@fernhollow.test\", \"title\": \"Senior Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2021-07-12\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\", \"vpn\", \"prod_db\"], \"notes\": \"\"}, {\"id\": \"E020\", \"name\": \"Alex Moreno\", \"email\": \"alex.moreno@fernhollow.test\", \"title\": \"Dispatch Coordinator\", \"department\": \"Operations\", \"manager\": \"E005 Kofi Mensah\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2022-10-03\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"tms\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"clarify\",\n \"message\": \"There is more than one \\\"Alex\\\" in the directory: Alex Chen (Senior Software Engineer, Engineering); Alex Moreno (Dispatch Coordinator, Operations). Which one do you mean?\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

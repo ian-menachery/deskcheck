@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E017 Diego Alvarez, Sales Manager, Sales\n</session>\n\nCan you add Noah Fischer to the TMS? He's helping with a freight quote."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Noah Fischer\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E036\", \"name\": \"Noah Fischer\", \"email\": \"noah.fischer@fernhollow.test\", \"title\": \"Sales Engineer\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-03-04\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E036\",\n \"system_id\": \"tms\",\n \"justification\": \"Requested by Diego Alvarez: Can you add Noah Fischer to the TMS? He's helping with a freight quote.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Diego Alvarez\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Noah Fischer: Transport management system (TMS), routed to manager Diego Alvarez for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

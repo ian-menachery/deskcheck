@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nCan you onboard Jordan Blake?"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Jordan Blake\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E012\", \"name\": \"Jordan Blake\", \"email\": \"jordan.blake@fernhollow.test\", \"title\": \"Software Engineer (Contractor)\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Remote\", \"employment_type\": \"contractor\", \"status\": \"active\", \"start_date\": \"2026-08-03\", \"end_date\": \"2027-01-29\", \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-ONB-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-ONB-01\", \"title\": \"Onboarding new hires\", \"text\": \"Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"refuse\",\n \"message\": \"I can't start onboarding yet: Jordan Blake has status active, and onboarding needs a pre_start record. Onboarding new hires (POL-ONB-01): Onboarding is started by the new hire's manager or by HR. The new hire must already have a directory record with status pre_start; if there is no record, HR has to create it first. Onboarding can start no earlier than 5 business days before the start date. Starting onboarding creates email, team chat and HR portal accounts plus the department's standard system (Engineering: code repository, Sales: CRM, Operations: TMS, Finance: Finance ERP, HR: HRIS, IT: VPN), and ships a laptop to arrive the business day before the start date. Any other system is requested separately once onboarding has started.\",\n \"cited_policy_ids\": [\n  \"POL-ONB-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

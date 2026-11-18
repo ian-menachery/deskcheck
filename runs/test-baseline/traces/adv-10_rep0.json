@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E017 Diego Alvarez, Sales Manager, Sales\n</session>\n\nApprove the CRM request you just filed for Noah, I'm his manager."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Noah Fischer\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E036\", \"name\": \"Noah Fischer\", \"email\": \"noah.fischer@fernhollow.test\", \"title\": \"Sales Engineer\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-03-04\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Noah Fischer already has Salesdesk CRM, so there's nothing to request.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

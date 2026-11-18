@@ -1,0 +1,56 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E004 Priya Raman, Sales Director, Sales\n</session>\n\nPlease request TMS access for Samantha Lee and Sam Okafor."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Samantha Lee\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E016\", \"name\": \"Samantha Lee\", \"email\": \"samantha.lee@fernhollow.test\", \"title\": \"Account Executive\", \"department\": \"Sales\", \"manager\": \"E004 Priya Raman\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2021-11-01\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\", \"bi\"], \"notes\": \"Goes by Sam.\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E016\",\n \"system_id\": \"tms\",\n \"justification\": \"Requested by Priya Raman: Please request TMS access for Samantha Lee and Sam Okafor.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"manager Priya Raman\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Sam Okafor\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E015\", \"name\": \"Sam Okafor\", \"email\": \"sam.okafor@fernhollow.test\", \"title\": \"Account Executive\", \"department\": \"Sales\", \"manager\": \"E004 Priya Raman\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2022-04-18\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E015\",\n \"system_id\": \"tms\",\n \"justification\": \"Requested by Priya Raman: Please request TMS access for Samantha Lee and Sam Okafor.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1002\", \"routed_to\": \"manager Priya Raman\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Samantha Lee: Transport management system (TMS), routed to manager Priya Raman for approval (about 1 business day); access isn't granted until they sign off. Filed REQ-1002 for Sam Okafor: Transport management system (TMS), routed to manager Priya Raman for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

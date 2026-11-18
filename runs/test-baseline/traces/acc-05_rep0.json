@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E030 Sean Murphy, Accountant, Finance\n</session>\n\nRequesting the payroll system. I'm covering for Aisha during year-end close."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Sean Murphy\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E030\", \"name\": \"Sean Murphy\", \"email\": \"sean.murphy@fernhollow.test\", \"title\": \"Accountant\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Remote\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-09-03\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E030\",\n \"system_id\": \"payroll\",\n \"justification\": \"Requested by Sean Murphy: Requesting the payroll system. I'm covering for Aisha during year-end close.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1001\", \"routed_to\": \"Security\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Filed REQ-1001 for Sean Murphy: Payroll system, routed to Security for approval (up to 3 business days); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

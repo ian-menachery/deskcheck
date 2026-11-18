@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E027 Peter Novak, Finance Controller, Finance\n</session>\n\nSean Murphy resigned; his last day is 2026-12-11. Please process it."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Sean Murphy\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E030\", \"name\": \"Sean Murphy\", \"email\": \"sean.murphy@fernhollow.test\", \"title\": \"Accountant\", \"department\": \"Finance\", \"manager\": \"E027 Peter Novak\", \"location\": \"Remote\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-09-03\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"erp\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E030\",\n \"last_day\": \"2026-12-11\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-12-11 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Sean Murphy (OFF-1001): access is removed at 2026-12-11 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

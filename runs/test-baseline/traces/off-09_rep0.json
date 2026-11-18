@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nTara Singh is leaving us. Please start her offboarding."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Tara Singh\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E035\", \"name\": \"Tara Singh\", \"email\": \"tara.singh@fernhollow.test\", \"title\": \"Data Analyst\", \"department\": \"Operations\", \"manager\": \"E021 Chloe Dubois\", \"location\": \"Remote\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2023-10-09\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"tms\", \"bi\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"clarify\",\n \"message\": \"What is Tara Singh's last working day (for example 2026-12-04)?\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

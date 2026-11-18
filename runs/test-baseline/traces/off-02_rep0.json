@@ -1,0 +1,36 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nYusuf Demir's contract ends December 31. Please set up his offboarding for that day."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Yusuf Demir\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E024\", \"name\": \"Yusuf Demir\", \"email\": \"yusuf.demir@fernhollow.test\", \"title\": \"Logistics Coordinator (Contractor)\", \"department\": \"Operations\", \"manager\": \"E021 Chloe Dubois\", \"location\": \"Remote\", \"employment_type\": \"contractor\", \"status\": \"active\", \"start_date\": \"2026-07-06\", \"end_date\": \"2026-12-31\", \"access\": [\"email\", \"chat\", \"hr_portal\", \"tms\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E024\",\n \"last_day\": \"2026-12-31\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-12-31 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Yusuf Demir (OFF-1001): access is removed at 2026-12-31 17:00 local, and equipment must be returned within 5 business days.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

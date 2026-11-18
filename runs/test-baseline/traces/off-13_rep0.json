@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E021 Chloe Dubois, Operations Manager, Operations\n</session>\n\nCan you make sure Tom Becker's access has been removed?"
+ },
+ {
+  "role": "tool_call",
+  "name": "escalate_to_human",
+  "content": "{\n \"queue\": \"it\",\n \"summary\": \"Request to remove or suspend access outside an offboarding; IT must action it. Requester E021 Chloe Dubois (Operations Manager) wrote: \\\"Can you make sure Tom Becker's access has been removed?\\\"\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "escalate_to_human",
+  "content": "{\"ok\": true, \"ticket_id\": \"ESC-1001\", \"queue\": \"it\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"escalated\",\n \"message\": \"I've passed this to the IT team (ticket ESC-1001); they will follow up with you.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E017 Diego Alvarez, Sales Manager, Sales\n</session>\n\nHannah Wright resigned; her last day is December 4. Also please get Noah Fischer TMS access so he can take over her accounts."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Hannah Wright\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E018\", \"name\": \"Hannah Wright\", \"email\": \"hannah.wright@fernhollow.test\", \"title\": \"Sales Development Rep\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2025-02-03\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_offboarding",
+  "content": "{\n \"employee_id\": \"E018\",\n \"last_day\": \"2026-12-04\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_offboarding",
+  "content": "{\"ok\": true, \"offboarding_id\": \"OFF-1001\", \"access_removed_at\": \"2026-12-04 17:00 local\", \"equipment_return\": \"within 5 business days\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Noah Fischer\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E036\", \"name\": \"Noah Fischer\", \"email\": \"noah.fischer@fernhollow.test\", \"title\": \"Sales Engineer\", \"department\": \"Sales\", \"manager\": \"E017 Diego Alvarez\", \"location\": \"Chicago\", \"employment_type\": \"full_time\", \"status\": \"active\", \"start_date\": \"2024-03-04\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"crm\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "create_access_request",
+  "content": "{\n \"employee_id\": \"E036\",\n \"system_id\": \"tms\",\n \"justification\": \"Requested by Diego Alvarez: Hannah Wright resigned; her last day is December 4. Also please get Noah Fischer TMS access so he can take over her accounts.\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "create_access_request",
+  "content": "{\"ok\": true, \"request_id\": \"REQ-1002\", \"routed_to\": \"manager Diego Alvarez\", \"note\": \"Filed for approval; access is not granted until the approver signs off.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started offboarding for Hannah Wright (OFF-1001): access is removed at 2026-12-04 17:00 local, and equipment must be returned within 5 business days. Filed REQ-1002 for Noah Fischer: Transport management system (TMS), routed to manager Diego Alvarez for approval (about 1 business day); access isn't granted until they sign off.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

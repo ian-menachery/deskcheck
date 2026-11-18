@@ -1,0 +1,46 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E009 Marcus Webb, Engineering Manager, Engineering\n</session>\n\nNina Patel starts Monday, please kick off her onboarding."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Nina Patel\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E014\", \"name\": \"Nina Patel\", \"email\": \"nina.patel@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"pre_start\", \"start_date\": \"2026-11-23\", \"end_date\": null, \"access\": [], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "start_onboarding",
+  "content": "{\n \"employee_id\": \"E014\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "start_onboarding",
+  "content": "{\"ok\": true, \"onboarding_id\": \"ONB-1001\", \"accounts_created\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"laptop\": \"ships to arrive the business day before the start date\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Nina Patel\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E014\", \"name\": \"Nina Patel\", \"email\": \"nina.patel@fernhollow.test\", \"title\": \"Software Engineer\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Boston\", \"employment_type\": \"full_time\", \"status\": \"onboarding\", \"start_date\": \"2026-11-23\", \"end_date\": null, \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"done\",\n \"message\": \"Started onboarding for Nina Patel (ONB-1001): accounts created for email, chat, hr_portal, git; the laptop ships to arrive the business day before the start date.\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

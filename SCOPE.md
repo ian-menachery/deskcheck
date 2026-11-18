@@ -160,6 +160,29 @@ next run, stop and report what ran.
 
 ---
 
+**Gate 3, unseen wording (amendment 2026-11-18, bars set before the cases exist).**
+Gate 1 put the router at 85/90 on test, so the Gate 2 bar "beats baseline by
+15 points" cannot be met by any model, and the 130-case set cannot tell the
+router and a model apart. Gate 3 asks whether the router's edge survives
+wording nobody tuned for.
+- **Cases:** 60 new cases written by a fresh subagent that has never seen
+  `cases/`, the prompt, the router or any result. It gets the company data,
+  the tool and grading code, and a label checker; same 9 categories in
+  proportion; deliberately messier messages (typos, indirect references,
+  several requests in one message, irrelevant detail, relative dates).
+- **Label checks before any run:** oracle 100% on every alternative, probes
+  rejected, traps accepted, null agent at most 5%, and Ian reviews a 10-case
+  sample.
+- **Runs, once each, nothing changed afterwards:** the frozen router, Haiku
+  5.5 (3 reps), Opus 5.5 (1 rep), all on frozen prompt v2.
+- **PASS for a model if all hold:** task success at least 15 points above the
+  router's on the same 60 cases; wrong-action rate at most 1.5% (so zero cases
+  at n = 60) and no higher than the router's; invented-policy rate at most 2%;
+  must-escalate recall at least 90%; false escalation at most 10%.
+- At n = 60, a single run's task success carries about ±12 points of noise.
+- A label found wrong after the run is reported as a label error next to the
+  result; nothing is re-scored.
+
 ## Budget
 
 - A ledger (`runs/spend.jsonl`, committed) records every call's model, usage
@@ -211,6 +234,7 @@ next run, stop and report what ran.
 | 2026-11-18 | ~4 | Company data, validated tools, grader, 130 cases. Ian approved a 20-case sample. **Case set frozen**: `cases.jsonl` sha256 `c5724f8a…a566a5`, `split.json` `aa2e98bd…f9804e`, commit `7f64355`. Gate 0 offline checks pass (oracle 130/130, null 5/130, 22 probes rejected, 7 traps accepted). | Router and LLM pilot. |
 | 2026-11-18 | ~5 | **Amendment:** the router is written by a separate subagent that sees only dev (DECISIONS 5); the first router, written here after the cases, was discarded unrun on test. The limit "the same session writes the cases, the prompt and the router" now applies to the prompt only. | Ian adds the API key; Haiku pilot. |
 | 2026-11-18 | ~7.5 | Blind router in (dev 40/40). Haiku pilot 5/5 at $0.0008/case. Dev tuning v0 38/40, v1 39/40, v2 40/40 and 39/40; **prompt v2 frozen** (DECISIONS 8). Spend so far $0.128. Ian's key expires 2026-12-31, so every paid run must finish before then. | Gate 1 on test; ask Ian before the Haiku test run and the Opus/Sonnet pilots. |
+| 2026-11-18 | ~8 | **Gate 1: router 85/90 on test (94.4%), 0 wrong actions**, so the Gate 2 "beats baseline by 15" bar is unreachable for every model. **Amendments (Ian, 2026-11-18):** Sonnet 5.5 dropped from Gate 2; Gate 3 (unseen wording) added with bars above, written before its cases exist. | Haiku test x3, Opus pilot + test, Gate 3 cases. |
 
 ## Gate results
 

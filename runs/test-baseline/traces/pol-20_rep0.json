@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E022 Raj Iyer, Fleet Analyst, Operations\n</session>\n\nCan I save customer files to my personal Dropbox so I can work offline?"
+ },
+ {
+  "role": "tool_call",
+  "name": "get_policy",
+  "content": "{\n \"policy_id\": \"POL-SEC-01\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "get_policy",
+  "content": "{\"ok\": true, \"id\": \"POL-SEC-01\", \"title\": \"Security and acceptable use\", \"text\": \"Accounts are personal: never share passwords or log in as someone else. Do not forward company email or store company files in personal accounts or personal cloud storage. Report suspicious emails with the Report Phishing button. If you think your account or device is compromised, or you clicked a suspicious link and entered your password, contact Security immediately; the helpdesk escalates these to Security as urgent. Software that is not in the company catalogue must not be installed on company laptops without IT approval.\"}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"answer\",\n \"message\": \"Here is what company policy says. Security and acceptable use (POL-SEC-01): Accounts are personal: never share passwords or log in as someone else. Do not forward company email or store company files in personal accounts or personal cloud storage. Report suspicious emails with the Report Phishing button. If you think your account or device is compromised, or you clicked a suspicious link and entered your password, contact Security immediately; the helpdesk escalates these to Security as urgent. Software that is not in the company catalogue must not be installed on company laptops without IT approval.\",\n \"cited_policy_ids\": [\n  \"POL-SEC-01\"\n ]\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]

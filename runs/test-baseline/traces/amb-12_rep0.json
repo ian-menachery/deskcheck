@@ -1,0 +1,26 @@
+[
+ {
+  "role": "user",
+  "content": "<session>\ntoday: 2026-11-17 (Tuesday)\nrequester: E006 Laura Bianchi, HR Director, HR\n</session>\n\nPlease offboard Jordan."
+ },
+ {
+  "role": "tool_call",
+  "name": "lookup_employee",
+  "content": "{\n \"query\": \"Jordan Blake\"\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "lookup_employee",
+  "content": "{\"ok\": true, \"matches\": [{\"id\": \"E012\", \"name\": \"Jordan Blake\", \"email\": \"jordan.blake@fernhollow.test\", \"title\": \"Software Engineer (Contractor)\", \"department\": \"Engineering\", \"manager\": \"E009 Marcus Webb\", \"location\": \"Remote\", \"employment_type\": \"contractor\", \"status\": \"active\", \"start_date\": \"2026-08-03\", \"end_date\": \"2027-01-29\", \"access\": [\"email\", \"chat\", \"hr_portal\", \"git\"], \"notes\": \"\"}]}"
+ },
+ {
+  "role": "tool_call",
+  "name": "reply",
+  "content": "{\n \"kind\": \"clarify\",\n \"message\": \"What is Jordan Blake's last working day (for example 2026-12-04)?\",\n \"cited_policy_ids\": []\n}"
+ },
+ {
+  "role": "tool_result",
+  "name": "reply",
+  "content": "{\"ok\": true, \"sent\": true}"
+ }
+]
